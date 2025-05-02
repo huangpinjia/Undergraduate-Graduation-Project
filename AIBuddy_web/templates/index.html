@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>聊天機器人</title>
+  <script src="https://cdn.jsdelivr.net/npm/@joeattardi/emoji-button@4.6.4/dist/index.js"></script>
   <style>
     body {
       margin: 0;
@@ -16,7 +17,7 @@
     }
 
     #chat-container {
-      width: 420px;
+      width: 540px;
       height: 620px;
       background-color: #fff;
       border-radius: 20px;
@@ -118,9 +119,9 @@
     }
 
     .emoji-icon {
-      font-size: 20px;
+      font-size: 22px;
       margin-left: 8px;
-      cursor: default;
+      cursor: pointer;
       user-select: none;
     }
   </style>
@@ -130,7 +131,7 @@
     <div id="chatbox"></div>
     <div id="input-area">
       <div id="emojiInput" contenteditable="true" placeholder="輸入訊息..."></div>
-      <div class="emoji-icon">😊</div>
+      <div id="emoji-button" class="emoji-icon">😊</div>
     </div>
   </div>
 
@@ -173,6 +174,35 @@
       wrapper.appendChild(bubble);
       box.appendChild(wrapper);
       box.scrollTop = box.scrollHeight;
+    }
+
+    // 初始化 Emoji Picker
+    const picker = new EmojiButton({
+      position: 'top-end',
+      zIndex: 1000,
+    });
+
+    const trigger = document.querySelector('#emoji-button');
+
+    picker.on('emoji', emoji => {
+      insertEmojiAtCaret(emoji);
+    });
+
+    trigger.addEventListener('click', () => {
+      picker.togglePicker(trigger);
+    });
+
+    function insertEmojiAtCaret(emoji) {
+      const sel = window.getSelection();
+      const range = sel.getRangeAt(0);
+      range.deleteContents();
+      const textNode = document.createTextNode(emoji);
+      range.insertNode(textNode);
+      range.setStartAfter(textNode);
+      range.setEndAfter(textNode);
+      sel.removeAllRanges();
+      sel.addRange(range);
+      inputBox.focus();
     }
   </script>
 </body>
