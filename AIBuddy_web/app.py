@@ -19,7 +19,7 @@ chat_history = {}
 
 # 載入 prompt
 base_dir = os.path.dirname(os.path.abspath(__file__))
-with open(os.path.join(base_dir, "prompt_01.txt"), "r", encoding="utf-8") as f:
+with open(os.path.join(base_dir, "prompt.txt"), "r", encoding="utf-8") as f:
     base_prompt = f.read()
 
 # 建立 SQLite 資料表（啟動時只跑一次）
