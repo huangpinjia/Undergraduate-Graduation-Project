@@ -1,0 +1,3 @@
+& "C:\Users\pinji\Documents\ngork\ngrok.exe" http 5000
+
+https://api.chatanywhere.org/v1/chat/completions
