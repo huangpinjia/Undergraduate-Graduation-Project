@@ -100,4 +100,6 @@ def chat():
 # 啟動伺服器
 if __name__ == "__main__":
     init_db()
-    app.run(port=5000)
+    port = int(os.environ.get("PORT", 5000))  # Render 會提供 PORT 環境變數
+    app.run(host="0.0.0.0", port=port)
+
