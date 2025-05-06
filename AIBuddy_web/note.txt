@@ -3,9 +3,6 @@
 https://api.chatanywhere.org/v1/chat/completions
 
 git add AIBuddy_web/templates/index.html
-git commit -m 
+git status
+git commit -m "撰寫更新內容"
 git push
-
-
-"💄 更新首頁 UI / index.html"
-
