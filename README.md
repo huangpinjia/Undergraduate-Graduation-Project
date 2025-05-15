@@ -1,4 +1,4 @@
-# AIBuddy Web
+# AIBuddy
 
 AIBuddy Web 是一款基於 Flask 的 GPT 聊天應用，具備簡易網頁介面，支援與 OpenAI API 對話並儲存聊天紀錄。適合自架部署於 Render 或本地端測試。
 
