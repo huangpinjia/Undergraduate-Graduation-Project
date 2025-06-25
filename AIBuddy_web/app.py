@@ -90,8 +90,9 @@ def backup_to_firestore(user_id, role, content,current_grow_stage=None):
             "timestamp": datetime.utcnow(),
             "grow_stage": current_grow_stage
         })
+        print("Firestore 寫入成功")
     except Exception as e:
-        print("❌ 備份失敗：", e)
+        print("備份失敗：", e)
 
 # === 首頁 ===
 @app.route("/")
