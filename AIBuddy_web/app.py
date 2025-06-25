@@ -17,6 +17,8 @@ GPT_API_KEY = os.getenv("GPT_API_KEY")
 # Firebase 初始化
 firebase_json = os.getenv("FIREBASE_KEY_JSON")
 cred = credentials.Certificate(json.loads(firebase_json))
+firebase_admin.initialize_app(cred)
+db = firestore.client()
 
 # Flask App
 app = Flask(__name__, template_folder="templates")
@@ -81,6 +83,7 @@ def classify_grow_stage(user_message):
 # === Firestore 備份 ===
 def backup_to_firestore(user_id, role, content,current_grow_stage=None):
     try:
+        print(f"📥 呼叫備份：{role=} {content[:30]=}")
         db.collection("chat_logs").document(user_id).collection("messages").add({
             "role": role,
             "content": content,
